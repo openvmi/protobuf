@@ -2,7 +2,7 @@
 
 set -e 
 
-REPOPATH=${GITHUB_WORKSPACE}
+REPOPATH="${GITHUB_WORKSPACE}/_buildoutput"
 CURRENT_BRANCH=${CURRENT_BRANCH-"branch-not-available"}
 
 function enterDir {
