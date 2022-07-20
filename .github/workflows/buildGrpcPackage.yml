@@ -36,3 +36,9 @@ jobs:
           
       - name: Check go version
         run: go version
+      
+      - name: copy build.sh to reop root
+        run: |
+          pwd
+          echo ${GITHUB_WORKSPACE}
+          cp ${GITHUB_WORKSPACE}/.github/workflow/build.sh .
