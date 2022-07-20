@@ -42,4 +42,5 @@ jobs:
           pwd
           echo ${GITHUB_WORKSPACE}
           ls -al
-          cp ${GITHUB_WORKSPACE}/protobuf/.github/workflow/build.sh .
+          cp ${GITHUB_WORKSPACE}/.github/workflows/build.sh .
+          ls -al
