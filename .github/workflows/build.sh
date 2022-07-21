@@ -2,7 +2,7 @@
 
 set -e 
 
-REPOPATH="${GITHUB_WORKSPACE}/_buildoutput"
+REPOPATH="${GITHUB_WORKSPACE}/.temp/_buildoutput"
 CURRENT_BRANCH=${CURRENT_BRANCH-"branch-not-available"}
 
 function enterDir {
@@ -28,7 +28,7 @@ function buildProtoForTypes {
     echo ${target}
     if [ -f .protolangs ]; then
         while read lang; do
-            reponame="protorepo-${target}-${lang}"
+            reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git

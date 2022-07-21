@@ -29,6 +29,10 @@ jobs:
       - name: Check go version
         run: go version
       
+      - name: install protoc
+        run: apt install -y protobuf-compiler
+        run: protoc --version
+        
       - name: copy build.sh to reop root
         run: |
           pwd
