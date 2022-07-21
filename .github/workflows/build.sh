@@ -27,6 +27,7 @@ function buildProtoForTypes {
     target=${1%/}
     echo ${target}
     if [ -f .protolangs ]; then
+        echo "this file is exist"
         while read lang; do
             echo $lang
             reponame="protobuf-${target}-${lang}"
