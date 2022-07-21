@@ -25,17 +25,19 @@ function buildDir {
 
 function buildProtoForTypes {
     target=${1%/}
+    TEMP_FILE="temp_protolangs"
     echo ${target}
     if [ -f .protolangs ]; then
         echo "this file is exist"
-        cat .protolangs
+        cp .protolangs ${TEMP_FILE}
+        ls -al
         while read lang; do
             echo $lang
             reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git
-        done < ".protolangs" 
+        done < "${TEMP_FILE}" 
     fi
     ls -al
 }
