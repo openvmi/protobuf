@@ -78,4 +78,17 @@ function buildAll {
     done
 }
 
+function setupPyVirtualEnv {
+    mkdir -p ${REPOPATH}
+    enterDir ${REPOPATH}
+    python3 -m pip install virtualenv
+    virtualenv env
+    source venv/bin/activate
+    python3 -m pip install grpcio
+    python3 -m pip install grpcio-tools
+    deactivate
+    ls -al
+    leaveDir
+}
+setupPyVirtualEnv
 buildAll
