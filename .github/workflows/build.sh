@@ -28,14 +28,14 @@ function buildProtoForTypes {
     echo ${target}
     if [ -f .protolangs ]; then
         echo "this file is exist"
-        cat .protolangs
-        while read lang; do
+        ls -al
+        while read lang || [ -n ${lang} ]; do
             echo $lang
             reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git
-        done < "$(pwd)/.protolangs"
+        done < ".protolangs" 
     fi
     ls -al
 }
