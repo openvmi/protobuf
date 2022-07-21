@@ -29,7 +29,7 @@ function buildProtoForTypes {
     if [ -f .protolangs ]; then
         echo "this file is exist"
         ls -al
-        while read lang || [ -n ${lang} ]; do
+        while IFS= read -r lang || [ -n "$lang" ]; do
             echo $lang
             reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
