@@ -35,9 +35,14 @@ function buildProtoForTypes {
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git
+            buildFor${lang}
         done < ".protolangs" 
     fi
     ls -al
+}
+
+function buildForgo {
+    protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*.proto
 }
 
 function buildAll {
