@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./image/pb";
+
+message ImageInferRequest {
+    string model_name = 1;
+    string model_version = 2;
+    string id = 3;
+    string image = 4;
+}
+
+message ImageInferResponse {
+    string model_name = 1;
+    string model_version = 2;
+    string id = 3;
+    repeated float results = 6;
+}
+
+service ImageInferenceService 
+{
+    rpc infer(ImageInferRequest) returns (ImageInferResponse) {}
+}

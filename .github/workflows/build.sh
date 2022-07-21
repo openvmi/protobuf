@@ -4,7 +4,7 @@ set -e
 
 REPOPATH="${GITHUB_WORKSPACE}/.temp/_buildoutput"
 CURRENT_BRANCH=${CURRENT_BRANCH-"branch-not-available"}
-
+export PATH="$PATH:$(go env GOPATH)/bin"
 function enterDir {
     echo "Entering $1"  
     pushd $1 > /dev/null
@@ -34,6 +34,7 @@ function buildProtoForTypes {
             git clone https://github.com/openvmi/${reponame}.git
         done < .protolangs
     fi
+    ls -al
 }
 
 function buildAll {
