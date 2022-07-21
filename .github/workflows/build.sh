@@ -53,6 +53,7 @@ function buildForpy {
     leaveDir
     python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./*.proto
     ls -al
+    cp *.py "$1/"
     deactivate
 }
 function commitAndPush {
