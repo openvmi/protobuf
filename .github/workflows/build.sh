@@ -57,6 +57,10 @@ function commitAndPush {
         git commit -m "Auto creation of proto"
         git remote set-url origin https://${push_secret}@github.com/openvmi/$2.git
         git push origin HEAD
+        tag=v$(date +'%Y.%m.%d.%H.%M')
+        git tag -a ${tag} -m "auto generate tag: ${tag}"
+        git push origin ${tag}
+
     else
         echo "No changes detected for $1"
     fi
