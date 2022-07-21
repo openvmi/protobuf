@@ -47,6 +47,14 @@ function buildForgo {
     cp *.go "$1/pb/"
 }
 
+function buildForpy {
+    enterDir ${REPOPATH}
+    source venv/bin/activate
+    leaveDir
+    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./*.proto
+    ls -al
+    deactivate
+}
 function commitAndPush {
     enterDir $1
     git config user.name "kai.zhou"
