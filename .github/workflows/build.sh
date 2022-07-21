@@ -35,7 +35,7 @@ function buildProtoForTypes {
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
-            buildFor${lang} ${reponame}
+            buildFor${lang} $REPOPATH/${reponame}
             commitAndPush $REPOPATH/$reponame
         done < ".protolangs" 
     fi
