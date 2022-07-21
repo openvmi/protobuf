@@ -36,7 +36,7 @@ function buildProtoForTypes {
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
             buildFor${lang} $REPOPATH/${reponame}
-            commitAndPush $REPOPATH/$reponame
+            commitAndPush $REPOPATH/$reponame $reponame
         done < ".protolangs" 
     fi
     ls -al
@@ -55,6 +55,7 @@ function commitAndPush {
     if ! git diff --exit-code > /dev/null; then
         git add .
         git commit -m "Auto creation of proto"
+        git remote set-url origin https://${push_secret}@github.com/openvmi/$2.git
         git push origin HEAD
     else
         echo "No changes detected for $1"

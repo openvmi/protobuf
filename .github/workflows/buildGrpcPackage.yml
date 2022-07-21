@@ -45,4 +45,6 @@ jobs:
           ls -al
       
       - name: run build.sh
+        env:
+          push_secret: ${{ secrets.PROTOBUF_SECRET }}
         run: bash ${GITHUB_WORKSPACE}/build.sh
