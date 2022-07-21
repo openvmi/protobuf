@@ -28,6 +28,7 @@ function buildProtoForTypes {
     echo ${target}
     if [ -f .protolangs ]; then
         while read lang; do
+            echo $lang
             reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
