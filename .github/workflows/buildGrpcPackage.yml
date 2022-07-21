@@ -26,9 +26,17 @@ jobs:
       - name: setup Go environment
         uses: actions/setup-go@v3.2.1
          
+      - name: setup python environment
+        uses: actions/setup-python@v4.1.0
+
       - name: Check go version
         run: go version
       
+      - name: check python version
+        run: |
+          python3 --version
+          pip3 --version
+          
       - name: install protoc
         run: |
           sudo apt install -y protobuf-compiler
