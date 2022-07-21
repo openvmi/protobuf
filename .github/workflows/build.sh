@@ -35,7 +35,7 @@ function buildProtoForTypes {
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git
-        done < "image.proto" 
+        done < ".protolangs" 
     fi
     ls -al
 }
