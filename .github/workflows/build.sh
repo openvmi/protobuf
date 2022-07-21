@@ -34,8 +34,9 @@ function buildProtoForTypes {
             reponame="protobuf-${target}-${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
-            git clone https://github.com/openvmi/${reponame}.git
-            buildFor${lang}
+            git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
+            buildFor${lang} ${reponame}
+            commitAndPush $REPOPATH/$reponame
         done < ".protolangs" 
     fi
     ls -al
@@ -43,6 +44,22 @@ function buildProtoForTypes {
 
 function buildForgo {
     protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*.proto
+    cp *.go "$1/pb/"
+}
+
+function commitAndPush {
+    enterDir $1
+    git config user.name "kai.zhou"
+    git config user.email "zhoukaisspu@163.com"
+    git add -N .
+    if ! git diff --exit-code > /dev/null; then
+        git add .
+        git commit -m "Auto creation of proto"
+        git push origin HEAD
+    else
+        echo "No changes detected for $1"
+    fi
+    leaveDir
 }
 
 function buildAll {
