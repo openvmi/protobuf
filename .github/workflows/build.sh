@@ -39,9 +39,11 @@ function buildProtoForTypes {
 function buildAll {
     echo "Build services's protocol buffers"
     mkdir -p ${REPOPATH}
-    for d in */; do
-        echo $d
-        buildDir $d
+    for d in *; do
+        if [ -d "$d" ]; then
+            echo $d
+            buildDir $d
+        fi
     done
 }
 
