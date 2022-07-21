@@ -82,7 +82,7 @@ function setupPyVirtualEnv {
     mkdir -p ${REPOPATH}
     enterDir ${REPOPATH}
     python3 -m pip install virtualenv
-    virtualenv env
+    virtualenv venv
     source venv/bin/activate
     python3 -m pip install grpcio
     python3 -m pip install grpcio-tools
