@@ -51,15 +51,19 @@ function buildForpy {
     enterDir ${REPOPATH}
     source venv/bin/activate
     leaveDir
-    reponame="$2"
-    mkdir ${reponame}
-    echo "${reponame}"
+    treponame="$2"
+    mkdir ${treponame}
+    echo "print treponame"
+    echo "${treponame}"
+    echo "all files in current dir"
     ls -al
-    cp *.proto "./${reponame}"
-    ls -al "./${reponame}/"
-    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${reponame}/*.proto
-    ls -al "./${repo}"
-    cp ./${reponame}/*.py "$1/"
+    cp *.proto "./${treponame}"
+    echo "all file in ${treponame}"
+    ls -al "./${treponame}/"
+    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${treponame}/*.proto
+    echoo "all files in ${treponame}, after run protc"
+    ls -al "./${treponame}"
+    cp ./${treponame}/*.py "$1/"
     deactivate
 }
 function commitAndPush { 
