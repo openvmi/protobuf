@@ -63,6 +63,8 @@ function buildForpy {
     python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${treponame}/*.proto
     echo "all files in ${treponame}, after run protc"
     ls -al "./${treponame}"
+    echo "all files in current dir"
+    ls -al
     cp ./${treponame}/*.py "$1/"
     deactivate
 }
