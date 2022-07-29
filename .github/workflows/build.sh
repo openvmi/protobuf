@@ -52,19 +52,17 @@ function buildForpy {
     source venv/bin/activate
     leaveDir
     treponame="$2"
+    echo "buildForpy, repoName: ${treponame}"
     mkdir ${treponame}
-    echo "print treponame"
-    echo "${treponame}"
-    echo "all files in current dir"
+    echo "buildForpy, all files is:"
     ls -al
     cp *.proto "./${treponame}"
-    echo "all file in ${treponame}"
+    echo "buildForpy, all files in ${treponame}:"
     ls -al "./${treponame}/"
     python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${treponame}/*.proto
-    echo "all files in ${treponame}, after run protc"
-    ls -al "./${treponame}"
-    echo "all files in current dir"
-    ls -al
+    echo "buildForpy, after run protoc, all files in ${treponame}:"
+    ls -al "./${treponame}/"
+    echo "copy files from ./${treponame} to $1"
     cp ./${treponame}/*.py "$1/"
     deactivate
 }
