@@ -31,7 +31,7 @@ function buildProtoForTypes {
         ls -al
         while IFS= read -r lang || [ -n "$lang" ]; do
             echo $lang
-            reponame="protobuf-${target}-${lang}"
+            reponame="protobuf_${target}_${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
