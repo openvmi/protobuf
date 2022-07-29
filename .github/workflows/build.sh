@@ -35,7 +35,7 @@ function buildProtoForTypes {
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
-            buildFor${lang} $REPOPATH/${reponame}
+            buildFor${lang} $REPOPATH/${reponame} ${reponame}
             commitAndPush $REPOPATH/$reponame $reponame
         done < ".protolangs" 
     fi
@@ -51,12 +51,15 @@ function buildForpy {
     enterDir ${REPOPATH}
     source venv/bin/activate
     leaveDir
-    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./*.proto
+    repoName="$2"
+    mkdir ${reponame}
+    cp *.proto "./${reponame}"
+    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${reponame}/*.proto
     ls -al
-    cp *.py "$1/"
+    cp ./${reponame}/*.py "$1/"
     deactivate
 }
-function commitAndPush {
+function commitAndPush { 
     enterDir $1
     git config user.name "kai.zhou"
     git config user.email "zhoukaisspu@163.com"
