@@ -31,7 +31,7 @@ function buildProtoForTypes {
         ls -al
         while IFS= read -r lang || [ -n "$lang" ]; do
             echo $lang
-            reponame="protobuf-${target}-${lang}"
+            reponame="protobuf_${target}_${lang}"
             rm -rf ${REPOPATH}/${reponame}
             echo "Cloneing repo: https://github.com/openvmi/${reponame}.git"
             git clone https://github.com/openvmi/${reponame}.git $REPOPATH/$reponame
@@ -51,12 +51,19 @@ function buildForpy {
     enterDir ${REPOPATH}
     source venv/bin/activate
     leaveDir
-    repoName="$2"
-    mkdir ${reponame}
-    cp *.proto "./${reponame}"
-    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${reponame}/*.proto
+    treponame="$2"
+    echo "buildForpy, repoName: ${treponame}"
+    mkdir ${treponame}
+    echo "buildForpy, all files is:"
     ls -al
-    cp ./${reponame}/*.py "$1/"
+    cp *.proto "./${treponame}"
+    echo "buildForpy, all files in ${treponame}:"
+    ls -al "./${treponame}/"
+    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${treponame}/*.proto
+    echo "buildForpy, after run protoc, all files in ${treponame}:"
+    ls -al "./${treponame}/"
+    echo "copy files from ./${treponame} to $1"
+    cp ./${treponame}/*.py "$1/"
     deactivate
 }
 function commitAndPush { 
