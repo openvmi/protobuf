@@ -51,11 +51,14 @@ function buildForpy {
     enterDir ${REPOPATH}
     source venv/bin/activate
     leaveDir
-    repoName="$2"
+    reponame="$2"
     mkdir ${reponame}
-    cp *.proto "./${reponame}"
-    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${reponame}/*.proto
+    echo "${reponame}"
     ls -al
+    cp *.proto "./${reponame}"
+    ls -al "./${reponame}/"
+    python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./${reponame}/*.proto
+    ls -al "./${repo}"
     cp ./${reponame}/*.py "$1/"
     deactivate
 }
