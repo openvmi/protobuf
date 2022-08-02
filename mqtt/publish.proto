@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "./publisher/pb";
+
+message PublishRequest {
+    string topic = 1;
+    string payload = 2;
+}
+
+message PublishResponse {
+    string payload = 1;
+}
+
+service PublishService 
+{
+    rpc publish(PublishRequest) returns (PublishResponse) {}
+}
