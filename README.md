@@ -1,5 +1,5 @@
 # protobuf
 
-![Build Grpc Package](https://github.com/openvmi/protobuf/actions/workflows/buildGrpcPackage.yml/badge.svg)
+[![build grpc package](https://github.com/openvmi/protobuf/actions/workflows/buildGrpcPackage.yml/badge.svg?branch=master)](https://github.com/openvmi/protobuf/actions/workflows/buildGrpcPackage.yml)
 
 protobuf definition files for grpc services
