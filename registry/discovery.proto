@@ -21,7 +21,7 @@ message Empty {
 
 }
 
-service ServiceRegistry
+service ServiceDiscovery
 {
     rpc getAllServices(Empty) returns (stream DiscoveryResponse) {}
     rpc discovery(DiscoveryRequest) returns (stream DiscoveryResponse) {}
