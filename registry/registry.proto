@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "./registry/pb";
+
+message RegisteRequest {
+    message MapFieldEntry {
+        string key = 1;
+        string value = 2;
+    }
+    string service_name = 1;
+    string service_ip = 2;
+    string service_port = 3;
+    repeated MapFieldEntry service_tag = 4;
+}
+
+message RegisteResponse {
+    string result = 1;
+}
+
+message DeregisteRequest {
+    string service_name = 1;
+    string service_ip = 2;
+    string service_port = 3;
+}
+
+message DeregiseResponse {
+    string result = 1;
+}
+
+service ServiceRegistry
+{
+    rpc registe(RegisteRequest) returns (RegisteResponse) {}
+    rpc deregiste(DeregisteRequest) returns (DeregiseResponse) {}
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "./registry/pb";
+
+message DiscoveryRequest {
+    string service_name = 1;
+}
+
+message DiscoveryResponse {
+    message MapFieldEntry {
+        string key = 1;
+        string value = 2;
+    }
+    string service_name = 1;
+    string service_ip = 2;
+    string service_port = 3;
+    repeated MapFieldEntry service_tag = 4;
+}
+
+message Empty {
+
+}
+
+service ServiceRegistry
+{
+    rpc getAllServices(Empty) returns (stream DiscoveryResponse) {}
+    rpc discovery(DiscoveryRequest) returns (stream DiscoveryResponse) {}
+
+}

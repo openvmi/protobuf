@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "./registry/pb";
+
+message HealthCheckRequest {
+
+}
+
+message HealthCheckResponse {
+    string status = 1;
+}
+service ServiceHealthCheck
+{
+    rpc check(HealthCheckRequest) returns (HealthCheckResponse) {}
+}
