@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./image/pb";
+
+message LprInferRequest {
+    string image = 1;
+}
+
+message LprInferResponse {
+    message Entry {
+        string name = 1;
+        string type = 2;
+        float conf =3;
+        float x = 4;
+        float y = 5;
+        float w = 6;
+        float h = 7;
+    }
+    repeated Entry results = 1;
+}
+
+service LprInferenceService 
+{
+    rpc infer(LprInferRequest) returns (LprInferRequest) {}
+}
