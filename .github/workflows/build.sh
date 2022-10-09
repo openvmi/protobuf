@@ -104,8 +104,8 @@ function setupPyVirtualEnv {
     python3 -m pip install virtualenv
     virtualenv venv
     source venv/bin/activate
-    python3 -m pip install grpcio
-    python3 -m pip install grpcio-tools
+    python3 -m pip install grpcio==1.47.0
+    python3 -m pip install grpcio-tools==3.20.1
     deactivate
     ls -al
     leaveDir
